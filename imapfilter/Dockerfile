@@ -7,12 +7,20 @@ VOLUME /data
 
 ARG APP_UID=1000
 ARG APP_GID=1000
+ARG IMAPFILTER_VERSION=2.6.11
 
 RUN addgroup -g ${APP_GID} -S app \
     && adduser -D -u ${APP_UID} -S -h /data app \
-    && apk add --no-cache ca-certificates tini \
-    && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing imapfilter
+    && apk add --no-cache ca-certificates libressl lua pcre tini \
+    && apk add --no-cache --virtual _build_stuff \
+       build-base git libressl-dev lua-dev pcre-dev \
+    && git clone -b v${IMAPFILTER_VERSION} --depth=1 https://github.com/lefcha/imapfilter /imapfilter \
+    && cd /imapfilter \
+    && make all install \
+    && cd / \
+    && rm -rf /imapfilter \
+    && apk del --no-cache _build_stuff
 
 USER app
 
-CMD ["/usr/bin/imapfilter"]
+CMD ["/usr/local/bin/imapfilter"]
