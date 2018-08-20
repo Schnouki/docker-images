@@ -17,6 +17,8 @@ RUN apk -U upgrade \
     libffi-dev \
     build-base \
     git \
+    nodejs \
+    npm \
  && apk add \
     python3 \
     sqlite \
@@ -25,12 +27,14 @@ RUN apk -U upgrade \
     su-exec \
     tini \
  && pip3 install --no-cache cffi gunicorn \
+ && npm install -g requirejs uglify-js jade bower \
  && git clone https://github.com/posativ/isso --depth=1 -b "${ISSO_VER}" /isso.git \
  && cd /isso.git \
+ && make init js \
  && python3 setup.py install \
  && cd / \
  && apk del build-dependencies \
- && rm -rf /tmp/* /var/cache/apk/* /isso.git
+ && rm -rf /tmp/* /var/cache/apk/* /isso.git /usr/lib/node_modules /root/.cache /root/.npm
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
