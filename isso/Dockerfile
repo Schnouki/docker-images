@@ -4,7 +4,7 @@ FROM alpine:3.8
 # https://github.com/Wonderfall/docker-isso
 # https://hub.docker.com/r/wonderfall/isso/
 
-ARG ISSO_VER=0.10.6
+ARG ISSO_VER=master
 
 ENV GID=1000 UID=1000 ISSO_SETTINGS=/config/isso.conf
 
@@ -16,6 +16,7 @@ RUN apk -U upgrade \
     python3-dev \
     libffi-dev \
     build-base \
+    git \
  && apk add \
     python3 \
     sqlite \
@@ -23,10 +24,13 @@ RUN apk -U upgrade \
     ca-certificates \
     su-exec \
     tini \
- && pip3 install --upgrade pip \
- && pip3 install --no-cache cffi gunicorn misaka==1.0.2 "isso==${ISSO_VER}" \
+ && pip3 install --no-cache cffi gunicorn \
+ && git clone https://github.com/posativ/isso --depth=1 -b "${ISSO_VER}" /isso.git \
+ && cd /isso.git \
+ && python3 setup.py install \
+ && cd / \
  && apk del build-dependencies \
- && rm -rf /tmp/* /var/cache/apk/*
+ && rm -rf /tmp/* /var/cache/apk/* /isso.git
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
