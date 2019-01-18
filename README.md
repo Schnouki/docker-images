@@ -15,3 +15,9 @@ configuration is in `/data`, which is a volume. So it will read its configuratio
 [Isso](https://posativ.org/isso/) is a commenting server similar to Disqus…
 except it's free software, self-hosted, lightweight, and respects your privacy.
 The configuration is in `/config`, the (SQLite) database in `/db`.
+
+
+## texlive
+
+A full Texlive distribution with some extra tools (make, stapler, and stuff from
+poppler-utils like pdfinfo).
