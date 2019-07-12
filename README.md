@@ -21,3 +21,10 @@ The configuration is in `/config`, the (SQLite) database in `/db`.
 
 A full Texlive distribution with some extra tools (make, stapler, and stuff from
 poppler-utils like pdfinfo).
+
+
+## tcp-relay
+
+A simple TCP relay using socat. Use `TARGET_HOST PORT` as the command, and it
+will relay incoming TCP traffic on port `PORT` to the same port on
+`TARGET_HOST`.
