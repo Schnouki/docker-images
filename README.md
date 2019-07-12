@@ -23,8 +23,9 @@ A full Texlive distribution with some extra tools (make, stapler, and stuff from
 poppler-utils like pdfinfo).
 
 
-## tcp-relay
+## net-relay
 
-A simple TCP relay using socat. Use `TARGET_HOST PORT` as the command, and it
-will relay incoming TCP traffic on port `PORT` to the same port on
-`TARGET_HOST`.
+A simple network relay using socat. Use `TARGET_HOST PORT` as the command, and
+it will relay incoming TCP traffic on port `PORT` to the same port on
+`TARGET_HOST`. You can use `PORT` several times, and add `-t`/`--tcp`,
+`-u`/`--udp` (or both) to relay TCP, UDP or both protocols.
