@@ -7,7 +7,7 @@ VOLUME /data
 
 ARG APP_UID=1000
 ARG APP_GID=1000
-ARG IMAPFILTER_VERSION=2.6.11
+ARG IMAPFILTER_VERSION=2.6.16
 
 RUN addgroup -g ${APP_GID} -S app \
     && adduser -D -u ${APP_UID} -S -h /data app \
