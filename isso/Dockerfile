@@ -1,10 +1,10 @@
-FROM alpine:3.8
+FROM alpine:3.11
 
 # Based on Wonderfall's image:
 # https://github.com/Wonderfall/docker-isso
 # https://hub.docker.com/r/wonderfall/isso/
 
-ARG ISSO_VER=0.11.1
+ARG ISSO_VER=0.12.2
 
 ENV GID=1000 UID=1000 ISSO_SETTINGS=/config/isso.conf
 

@@ -7,7 +7,7 @@
 Isso is a commenting server similar to Disqus. More info on the [official website](https://posativ.org/isso/).
 
 #### Features
-- Based on Alpine Linux 3.8.
+- Based on Alpine Linux 3.11.
 - Latest Isso installed with `pip`.
 - Uses Python 3 and [Gunicorn](http://gunicorn.org/).
 
